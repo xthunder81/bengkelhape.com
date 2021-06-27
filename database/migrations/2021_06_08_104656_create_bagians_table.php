@@ -14,6 +14,7 @@ class CreateBagiansTable extends Migration
     public function up()
     {
         Schema::create('bagian', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id_bagian');
 			$table->string('nama_bagian')->nullable();
 			$table->string('kode_bagian')->unique();

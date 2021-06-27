@@ -8,6 +8,8 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
+    'App\\Http\\Controllers\\AdminAuthController' => $baseDir . '/app/Http/Controllers/AdminAuthController.php',
+    'App\\Http\\Controllers\\AdminController' => $baseDir . '/app/Http/Controllers/AdminController.php',
     'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
     'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
     'App\\Http\\Controllers\\Auth\\LoginController' => $baseDir . '/app/Http/Controllers/Auth/LoginController.php',
@@ -2165,6 +2167,7 @@ return array(
     'League\\Flysystem\\ConfigAwareTrait' => $vendorDir . '/league/flysystem/src/ConfigAwareTrait.php',
     'League\\Flysystem\\ConnectionErrorException' => $vendorDir . '/league/flysystem/src/ConnectionErrorException.php',
     'League\\Flysystem\\ConnectionRuntimeException' => $vendorDir . '/league/flysystem/src/ConnectionRuntimeException.php',
+    'League\\Flysystem\\CorruptedPathDetected' => $vendorDir . '/league/flysystem/src/CorruptedPathDetected.php',
     'League\\Flysystem\\Directory' => $vendorDir . '/league/flysystem/src/Directory.php',
     'League\\Flysystem\\Exception' => $vendorDir . '/league/flysystem/src/Exception.php',
     'League\\Flysystem\\File' => $vendorDir . '/league/flysystem/src/File.php',

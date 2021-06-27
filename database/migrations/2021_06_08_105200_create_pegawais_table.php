@@ -14,6 +14,7 @@ class CreatePegawaisTable extends Migration
     public function up()
     {
         Schema::create('pegawai', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id_pegawai');
 			$table->string('username')->unique();
 			$table->string('password')->nullable();

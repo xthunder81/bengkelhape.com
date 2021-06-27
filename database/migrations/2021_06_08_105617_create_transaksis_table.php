@@ -14,6 +14,7 @@ class CreateTransaksisTable extends Migration
     public function up()
     {
         Schema::create('transaksi', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id_transaksi');
             $table->unsignedInteger('service_id');
             $table->string('no_transaksi');
