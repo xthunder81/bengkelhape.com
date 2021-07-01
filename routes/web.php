@@ -31,8 +31,22 @@ Route::group(['middleware' => 'guest:pegawai'], function () {
     Route::post('admin', 'AdminAuthController@postLogin')->name('admin.prosesLogin');
 });
 
-Route::group([ 'prefix' => 'pegawai', 'middleware' => 'auth:pegawai'], function () {
+Route::group([ 'prefix' => 'admin', 'middleware' => 'auth:pegawai'], function () {
     Route::get('admin', 'AdminController@index')->name('admin.home');
+
+    Route::get('bagian', 'BagianController@index')->name('admin.bagian');
+    Route::get('bagian/create', 'BagianController@create')->name('admin.bagian.create');
+    Route::post('bagian/store', 'BagianController@store')->name('admin.bagian.store');
+    Route::get('bagian/edit/{id}', 'BagianController@edit')->name('admin.bagian.edit');
+    Route::patch('bagian/update/{id}', 'BagianController@update')->name('admin.bagian.update');
+    Route::delete('bagian/destroy/{id}', 'BagianController@destroy')->name('admin.bagian.destroy');
+
+    Route::get('service', 'ServiceController@index')->name('admin.service');
+    Route::get('service/create', 'ServiceController@create')->name('admin.service.create');
+    Route::post('service/store', 'ServiceController@store')->name('admin.service.store');
+    Route::get('service/edit/{id}', 'ServiceController@edit')->name('admin.service.edit');
+    Route::patch('service/update/{id}', 'ServiceController@update')->name('admin.service.update');
+    Route::delete('service/destroy/{id}', 'ServiceController@destroy')->name('admin.service.destroy');
 
     Route::post('logout', 'AdminAuthController@logout')->name('admin.logout');
 });
