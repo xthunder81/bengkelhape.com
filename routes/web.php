@@ -22,7 +22,9 @@ Route::get('/', function () {
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/test', 'AdminAuthController@login')->name('test');
+Route::get('/test', function() {
+    return view('admin/home');
+})->name('test');
 
 Route::group(['middleware' => 'guest:pegawai'], function () {
     Route::get('admin', 'AdminAuthController@login')->name('admin.login');

@@ -20,7 +20,7 @@ class RedirectIfAuthenticated
     {
         if (Auth::guard($guard)->check()) {
             if($guard == "pegawai") {
-                return redirect()->route('welcome');
+                return redirect()->route('admin.home');
             }
             else {
                 return redirect(RouteServiceProvider::HOME);

@@ -27,7 +27,7 @@ class AdminAuthController extends Controller
         ]);
 
         if(\Auth()->guard('pegawai')->attempt(['username' => $request->username, 'password' => $request->password])){
-            return redirect()->route('welcome');
+            return redirect()->route('admin.home');
         }
 
         return redirect()->back()->with(['jenis' => 'danger','pesan' => 'Gagal login. Username atau Password salah']);

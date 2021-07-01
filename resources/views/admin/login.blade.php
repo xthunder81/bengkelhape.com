@@ -14,6 +14,8 @@
 
     {{-- CSS Script --}}
     <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{ asset ('plugins/fontawesome-free/css/all.min.css') }}">
+
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset ('fonts/icomoon/style.css') }}">
@@ -21,7 +23,7 @@
     <link rel="stylesheet" href="{{ asset ('css/owl.carousel.min.css') }}">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{ asset ('css/adminlte.min.css') }}">
+    <link rel="stylesheet" href="{{ asset ('dist/css/adminlte.min.css') }}">
 
     <!-- Style -->
     <link rel="stylesheet" href="{{ asset ('css/style.css') }}">
@@ -78,7 +80,7 @@
         <!-- Bootstrap 4 -->
         <script src="{{ asset ('js/jquery-3.3.1.min.js') }}"></script>
         {{-- <script src="{{ asset ('js/popper.min.js') }}"></script> --}}
-        <script src="{{ asset ('js/adminlte.js') }}"></script>
+        <script src="{{ asset ('dist/js/adminlte.js') }}"></script>
         <script src="{{ asset ('js/main.js') }}"></script>
 
     </body>
