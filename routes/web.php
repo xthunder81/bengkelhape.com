@@ -43,10 +43,10 @@ Route::group([ 'prefix' => 'admin', 'middleware' => 'auth:pegawai'], function ()
 
     Route::get('pegawai', 'AdminController@pegawaiView')->name('admin.pegawai');
     Route::get('pegawai/create', 'AdminController@pegawaiCreate')->name('admin.pegawai.create');
-    Route::post('pegawai/store', 'PegawaiController@PegawaiStore')->name('admin.pegawai.store');
-    Route::get('pegawai/edit/{id}', 'PegawaiController@pegawaiEdit')->name('admin.pegawai.edit');
-    Route::patch('pegawai/update/{id}', 'PegawaiController@pegawaiUpdate')->name('admin.pegawai.update');
-    Route::delete('pegawai/destroy/{id}', 'PegawaiController@pegawaiDestroy')->name('admin.pegawai.destroy');
+    Route::post('pegawai/store', 'AdminController@PegawaiStore')->name('admin.pegawai.store');
+    Route::get('pegawai/edit/{id}', 'AdminController@pegawaiEdit')->name('admin.pegawai.edit');
+    Route::patch('pegawai/update/{id}', 'AdminController@pegawaiUpdate')->name('admin.pegawai.update');
+    Route::delete('pegawai/destroy/{id}', 'AdminController@pegawaiDestroy')->name('admin.pegawai.destroy');
 
     Route::get('service', 'ServiceController@index')->name('admin.service');
     Route::get('service/create', 'ServiceController@create')->name('admin.service.create');

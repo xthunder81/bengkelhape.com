@@ -43,12 +43,13 @@ class AdminController extends Controller
     public function pegawaiStore (Request $request)
     {
         $request->validate([
-            'username' => 'required|min:6',
-            'password' => 'required|min:6',
+            'username' => 'required',
+            'password' => 'required',
             'nama_pegawai' => 'required',
             'jenis_kelamin' => 'required',
             'tanggal_lahir' => 'required',
             'tanggal_masuk' => 'required',
+            'alamat_pegawai' => 'required',
             'kelurahan_pegawai' => 'required',
             'kecamatan_pegawai' => 'required',
             'kabupaten_pegawai' => 'required',
@@ -62,17 +63,20 @@ class AdminController extends Controller
             'password' => bcrypt($request->password),
             'nama_pegawai' => ucwords(strtolower($request->nama_pegawai)),
             'jenis_kelamin' => $request->jenis_kelamin,
-            'tanggal_lahir' => $request->tanggal_lahir,
-            'tanggal_masuk' => $request->tanggal_masuk,
-            'kelurahan_pegawai' => $request->kelurahan_pegawai,
-            'kecamatan_pegawai' => $request->kecamatan_pegawai,
-            'kabupaten_pegawai' => $request->kabupaten_pegawai,
-            'provinsi_pegawai' => $request->provinsi_pegawai,
+            'tanggal_lahir' => Carbon::parse($request->tanggal_lahir)->format('Y-m-d'),
+            'tanggal_masuk' => Carbon::parse($request->tanggal_masuk)->format('Y-m-d'),
+            'alamat_pegawai' => ucwords(strtolower($request->alamat_pegawai)),
+            'kelurahan_pegawai' => ucwords(strtolower($request->kelurahan_pegawai)),
+            'kecamatan_pegawai' => ucwords(strtolower($request->kecamatan_pegawai)),
+            'kabupaten_pegawai' => ucwords(strtolower($request->kabupaten_pegawai)),
+            'provinsi_pegawai' => ucwords(strtolower($request->provinsi_pegawai)),
             'telpon_pegawai' => $request->telpon_pegawai,
         ]);
 
+        // dd($pegawai->id_pegawai);
+
         detail_pegawai::create([
-            'pegawai_id' => $pegawai->id_Pegawai,
+            'pegawai_id' => $pegawai->id_pegawai,
             'bagian_id' => $request->bagian_id,
         ]);
 

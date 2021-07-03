@@ -185,7 +185,7 @@
 
                         <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            <a href="{{ route ('admin.home') }}" class="nav-link">
+                            <a href="{{ route ('admin.home') }}" class="nav-link {{ Route::current()->getName() == 'admin.home' ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard
@@ -193,7 +193,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route ('admin.bagian') }}" class="nav-link">
+                            <a href="{{ route ('admin.bagian') }}" class="nav-link {{ Route::current()->getName() == 'admin.bagian' ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Bagian
@@ -201,7 +201,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route ('admin.service') }}" class="nav-link">
+                            <a href="{{ route ('admin.service') }}" class="nav-link {{ Route::current()->getName() == 'admin.service' ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-copy"></i>
                                 <p>
                                     Service
@@ -209,7 +209,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route ('admin.pegawai') }}" class="nav-link">
+                            <a href="{{ route ('admin.pegawai') }}" class="nav-link {{ Route::current()->getName() == 'admin.pegawai' ? 'active' : '' }}">
                                 <i class="nav-icon far fa-address-card"></i>
                                 <p>
                                     Pegawai
