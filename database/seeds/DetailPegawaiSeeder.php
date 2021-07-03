@@ -1,5 +1,6 @@
 <?php
 
+use App\detail_pegawai;
 use Illuminate\Database\Seeder;
 
 class DetailPegawaiSeeder extends Seeder
@@ -12,5 +13,9 @@ class DetailPegawaiSeeder extends Seeder
     public function run()
     {
         //
+        detail_pegawai::create([
+            'pegawai_id' => '1',
+            'bagian_id' => '1',
+        ]);
     }
 }

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\pegawai;
 use App\detail_pegawai;
+use App\bagian;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -22,13 +25,19 @@ class AdminController extends Controller
 
     public function pegawaiView ()
     {
-        $pegawai = pegawai::get();
-        return view('admin.pegawai', compact('pegawai'));
+        $allpegawai = DB::table('detail_pegawai')
+                    ->join('pegawai', 'pegawai.id_pegawai','=','detail_pegawai.pegawai_id')
+                    ->join('bagian', 'bagian.id_bagian','=','detail_pegawai.bagian_id')
+                    ->select('pegawai.id_pegawai','pegawai.nama_pegawai','bagian.nama_bagian','detail_pegawai.kode_pegawai', 'pegawai.tanggal_masuk')
+                    ->get();
+
+        return view('admin.pegawai.index', compact('allpegawai'));
     }
 
     public function pegawaiCreate  ()
     {
-        return view('admin.pegawai.create');
+        $bagian = bagian::get();
+        return view('admin.pegawai.create', compact('bagian'));
     }
 
     public function pegawaiStore (Request $request)
@@ -45,9 +54,10 @@ class AdminController extends Controller
             'kabupaten_pegawai' => 'required',
             'provinsi_pegawai' => 'required',
             'telpon_pegawai' => 'required',
+            'bagian_id' => 'required',
         ]);
 
-        pegawai::create([
+        $pegawai = pegawai::create([
             'username' => $request->username,
             'password' => bcrypt($request->password),
             'nama_pegawai' => ucwords(strtolower($request->nama_pegawai)),
@@ -60,6 +70,13 @@ class AdminController extends Controller
             'provinsi_pegawai' => $request->provinsi_pegawai,
             'telpon_pegawai' => $request->telpon_pegawai,
         ]);
+
+        detail_pegawai::create([
+            'pegawai_id' => $pegawai->id_Pegawai,
+            'bagian_id' => $request->bagian_id,
+        ]);
+
+        return redirect(route ('admin.pegawai'))->with(['jenis' => 'success','pesan' => 'Berhasil Menambah Pegawai']);
     }
 
     /**

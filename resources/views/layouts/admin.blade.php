@@ -209,27 +209,12 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route ('admin.pegawai') }}" class="nav-link">
                                 <i class="nav-icon far fa-address-card"></i>
                                 <p>
-                                    Master Pegawai
-                                    <i class="right fas fa-angle-left"></i>
+                                    Pegawai
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="./index.html" class="nav-link">
-                                        <i class="far fa-user nav-icon"></i>
-                                        <p>Pegawai</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="./index2.html" class="nav-link">
-                                        <i class="far fa-id-badge nav-icon"></i>
-                                        <p>Detail Pegawai</p>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">

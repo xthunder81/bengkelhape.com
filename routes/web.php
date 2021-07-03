@@ -23,7 +23,7 @@ Route::get('/', function () {
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/test', function() {
-    return view('admin/home');
+    return view('welcome2');
 })->name('test');
 
 Route::group(['middleware' => 'guest:pegawai'], function () {
@@ -40,6 +40,13 @@ Route::group([ 'prefix' => 'admin', 'middleware' => 'auth:pegawai'], function ()
     Route::get('bagian/edit/{id}', 'BagianController@edit')->name('admin.bagian.edit');
     Route::patch('bagian/update/{id}', 'BagianController@update')->name('admin.bagian.update');
     Route::delete('bagian/destroy/{id}', 'BagianController@destroy')->name('admin.bagian.destroy');
+
+    Route::get('pegawai', 'AdminController@pegawaiView')->name('admin.pegawai');
+    Route::get('pegawai/create', 'AdminController@pegawaiCreate')->name('admin.pegawai.create');
+    Route::post('pegawai/store', 'PegawaiController@PegawaiStore')->name('admin.pegawai.store');
+    Route::get('pegawai/edit/{id}', 'PegawaiController@pegawaiEdit')->name('admin.pegawai.edit');
+    Route::patch('pegawai/update/{id}', 'PegawaiController@pegawaiUpdate')->name('admin.pegawai.update');
+    Route::delete('pegawai/destroy/{id}', 'PegawaiController@pegawaiDestroy')->name('admin.pegawai.destroy');
 
     Route::get('service', 'ServiceController@index')->name('admin.service');
     Route::get('service/create', 'ServiceController@create')->name('admin.service.create');
