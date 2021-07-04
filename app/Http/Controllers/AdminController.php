@@ -83,6 +83,74 @@ class AdminController extends Controller
         return redirect(route ('admin.pegawai'))->with(['jenis' => 'success','pesan' => 'Berhasil Menambah Pegawai']);
     }
 
+    public function pegawaiEdit ($id)
+    {
+        $pegawai = pegawai::findOrFail($id);
+        $bagian = bagian::get();
+        $detailp = DB::table('detail_pegawai')
+                    ->where('pegawai_id', $id)
+                    ->join('bagian', 'bagian.id_bagian','=','detail_pegawai.bagian_id')
+                    ->first();
+        return view('admin.pegawai.edit', compact('pegawai', 'bagian', 'detailp'));
+    }
+
+    public function pegawaiUpdate (Request $request, $id)
+    {
+        $request->validate([
+            'password' => 'required',
+            'nama_pegawai' => 'required',
+            'jenis_kelamin' => 'required',
+            'tanggal_lahir' => 'required',
+            'tanggal_masuk' => 'required',
+            'alamat_pegawai' => 'required',
+            'kelurahan_pegawai' => 'required',
+            'kecamatan_pegawai' => 'required',
+            'kabupaten_pegawai' => 'required',
+            'provinsi_pegawai' => 'required',
+            'telpon_pegawai' => 'required',
+            'bagian_id' => 'required',
+        ]);
+
+        pegawai::find($id)
+            ->update([
+            'password' => bcrypt($request->password),
+            'nama_pegawai' => ucwords(strtolower($request->nama_pegawai)),
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'tanggal_lahir' => Carbon::parse($request->tanggal_lahir)->format('Y-m-d'),
+            'tanggal_masuk' => Carbon::parse($request->tanggal_masuk)->format('Y-m-d'),
+            'alamat_pegawai' => ucwords(strtolower($request->alamat_pegawai)),
+            'kelurahan_pegawai' => ucwords(strtolower($request->kelurahan_pegawai)),
+            'kecamatan_pegawai' => ucwords(strtolower($request->kecamatan_pegawai)),
+            'kabupaten_pegawai' => ucwords(strtolower($request->kabupaten_pegawai)),
+            'provinsi_pegawai' => ucwords(strtolower($request->provinsi_pegawai)),
+            'telpon_pegawai' => $request->telpon_pegawai,
+        ]);
+
+        DB::table('detail_pegawai')
+                    ->where('pegawai_id', $id)
+                    ->update([
+                        'bagian_id' => $request->bagian_id,
+                    ]);
+
+
+
+        return redirect(route ('admin.pegawai'))->with(['jenis' => 'success','pesan' => 'Berhasil Mengedit Pegawai']);
+    }
+
+    public function pegawaiDestroy($id)
+    {
+        //
+        DB::table('detail_pegawai')
+                            ->where('pegawai_id', $id)
+                            ->delete();
+
+        $pegawai = pegawai::findOrFail ($id);
+        $pegawai->delete();
+
+
+        return redirect(route ('admin.pegawai'))->with(['jenis' => 'success','pesan' => 'Berhasil Menghapus Pegawai']);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

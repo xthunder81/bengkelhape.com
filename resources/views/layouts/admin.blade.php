@@ -185,7 +185,8 @@
 
                         <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            <a href="{{ route ('admin.home') }}" class="nav-link {{ Route::current()->getName() == 'admin.home' ? 'active' : '' }}">
+                            <a href="{{ route ('admin.home') }}"
+                                class="nav-link {{ Route::current()->getName() == 'admin.home' ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard
@@ -193,7 +194,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route ('admin.bagian') }}" class="nav-link {{ Route::current()->getName() == 'admin.bagian' ? 'active' : '' }}">
+                            <a href="{{ route ('admin.bagian') }}"
+                                class="nav-link {{ Route::current()->getName() == 'admin.bagian' ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Bagian
@@ -201,7 +203,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route ('admin.service') }}" class="nav-link {{ Route::current()->getName() == 'admin.service' ? 'active' : '' }}">
+                            <a href="{{ route ('admin.service') }}"
+                                class="nav-link {{ Route::current()->getName() == 'admin.service' ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-copy"></i>
                                 <p>
                                     Service
@@ -209,7 +212,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route ('admin.pegawai') }}" class="nav-link {{ Route::current()->getName() == 'admin.pegawai' ? 'active' : '' }}">
+                            <a href="{{ route ('admin.pegawai') }}"
+                                class="nav-link {{ Route::current()->getName() == 'admin.pegawai' ? 'active' : '' }}">
                                 <i class="nav-icon far fa-address-card"></i>
                                 <p>
                                     Pegawai
@@ -326,6 +330,26 @@
     </script>
     <!-- AdminLTE App -->
     <script src="{{ asset ('dist/js/adminlte.js') }}"></script>
+
+    <script src="{{ asset ('auth/jquery.inputmask.bundle.js') }}"></script>
+
+    <script type="text/javascript">
+       $(document).ready(function(){
+        $("#nisn").inputmask({"mask": "9999999999"});
+        $("#show_hide_password a").on('click', function(event) {
+            event.preventDefault();
+            if($('#show_hide_password input').attr("type") == "text"){
+                $('#show_hide_password input').attr('type', 'password');
+                $('#show_hide_password i').addClass( "fa-eye-slash" );
+                $('#show_hide_password i').removeClass( "fa-eye" );
+            }else if($('#show_hide_password input').attr("type") == "password"){
+                $('#show_hide_password input').attr('type', 'text');
+                $('#show_hide_password i').removeClass( "fa-eye-slash" );
+                $('#show_hide_password i').addClass( "fa-eye" );
+            }
+        });
+    });
+    </script>
 
 </body>
 

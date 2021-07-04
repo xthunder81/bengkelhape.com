@@ -27,8 +27,12 @@ Tambah Pegawai
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password" placeholder="Password"
-                                    name="password" required>
+                                <div class="input-group" id="show_hide_password">
+                                    <input class="form-control" name="password" id="password" type="password" placeholder="Masukkan Password" aria-describedby="basic-addon2" required data-eye>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" id="basic-addon2"><a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a></span>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="nama_pegawai">Nama Pegawai</label>
