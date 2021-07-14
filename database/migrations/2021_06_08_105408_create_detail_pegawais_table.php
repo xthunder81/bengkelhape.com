@@ -14,6 +14,7 @@ class CreateDetailPegawaisTable extends Migration
     public function up()
     {
         Schema::create('detail_pegawai', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id_detail_pegawai');
 			$table->unsignedInteger('pegawai_id');
 			$table->unsignedInteger('bagian_id');

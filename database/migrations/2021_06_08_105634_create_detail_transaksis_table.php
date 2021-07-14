@@ -14,6 +14,7 @@ class CreateDetailTransaksisTable extends Migration
     public function up()
     {
         Schema::create('detail_transaksi', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id_detail_transaksi');
             $table->unsignedInteger('transaksi_id');
             $table->string('berita', 255)->nullable();
