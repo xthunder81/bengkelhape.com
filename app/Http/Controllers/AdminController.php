@@ -8,6 +8,8 @@ use App\detail_pegawai;
 use App\bagian;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Facade\FlareClient\Glows\Recorder;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -28,8 +30,11 @@ class AdminController extends Controller
         $allpegawai = DB::table('detail_pegawai')
                     ->join('pegawai', 'pegawai.id_pegawai','=','detail_pegawai.pegawai_id')
                     ->join('bagian', 'bagian.id_bagian','=','detail_pegawai.bagian_id')
+                    // ->select('pegawai.id_pegawai','pegawai.nama_pegawai','detail_pegawai.bagian_id','detail_pegawai.kode_pegawai', 'pegawai.tanggal_masuk')
                     ->select('pegawai.id_pegawai','pegawai.nama_pegawai','bagian.nama_bagian','detail_pegawai.kode_pegawai', 'pegawai.tanggal_masuk')
                     ->get();
+
+        // $bagian = bagian::get();
 
         return view('admin.pegawai.index', compact('allpegawai'));
     }
@@ -73,12 +78,14 @@ class AdminController extends Controller
             'telpon_pegawai' => $request->telpon_pegawai,
         ]);
 
-        // dd($pegawai->id_pegawai);
+        // $record = detail_pegawai::latest()->first();
 
         detail_pegawai::create([
             'pegawai_id' => $pegawai->id_pegawai,
-            'bagian_id' => $request->bagian_id,
+            'bagian_id' => (implode(',', $request->bagian_id)),
+            'kode_pegawai' => (str_pad($pegawai->id_pegawai,5,"0", STR_PAD_LEFT)),
         ]);
+
 
         return redirect(route ('admin.pegawai'))->with(['jenis' => 'success','pesan' => 'Berhasil Menambah Pegawai']);
     }
@@ -97,7 +104,7 @@ class AdminController extends Controller
     public function pegawaiUpdate (Request $request, $id)
     {
         $request->validate([
-            'password' => 'required',
+            // 'password' => 'required',
             'nama_pegawai' => 'required',
             'jenis_kelamin' => 'required',
             'tanggal_lahir' => 'required',
@@ -113,7 +120,7 @@ class AdminController extends Controller
 
         pegawai::find($id)
             ->update([
-            'password' => bcrypt($request->password),
+            // 'password' => bcrypt($request->password),
             'nama_pegawai' => ucwords(strtolower($request->nama_pegawai)),
             'jenis_kelamin' => $request->jenis_kelamin,
             'tanggal_lahir' => Carbon::parse($request->tanggal_lahir)->format('Y-m-d'),
@@ -216,6 +223,5 @@ class AdminController extends Controller
     {
         //
     }
-
 
 }

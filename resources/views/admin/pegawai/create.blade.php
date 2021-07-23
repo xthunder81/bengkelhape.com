@@ -4,6 +4,12 @@
 Tambah Pegawai
 @endsection
 
+@section('css')
+<link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
+<link rel="stylesheet"
+    href="{{ asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
+@endsection
+
 @section('content')
 
 <div class="row">
@@ -28,9 +34,12 @@ Tambah Pegawai
                             <div class="form-group">
                                 <label for="password">Password</label>
                                 <div class="input-group" id="show_hide_password">
-                                    <input class="form-control" name="password" id="password" type="password" placeholder="Masukkan Password" aria-describedby="basic-addon2" required data-eye>
+                                    <input class="form-control" name="password" id="password" type="password"
+                                        placeholder="Masukkan Password" aria-describedby="basic-addon2" required
+                                        data-eye>
                                     <div class="input-group-append">
-                                        <span class="input-group-text" id="basic-addon2"><a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a></span>
+                                        <span class="input-group-text" id="basic-addon2"><a href=""><i
+                                                    class="fa fa-eye-slash" aria-hidden="true"></i></a></span>
                                     </div>
                                 </div>
                             </div>
@@ -95,13 +104,16 @@ Tambah Pegawai
                         </div>
                         <div class="form-group col-md-6">
                             <label for="telpon_pegawai">Telpon</label>
-                            <input class="form-control" id="telpon_pegawai" placeholder="Telpon" name="telpon_pegawai"
-                                required>
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="telpon_pegawai">+62</span>
+                                <input class="form-control" id="telpon_pegawai" placeholder="Telpon"
+                                    name="telpon_pegawai" required>
+                            </div>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="bagian_id">Jenis Kelamin</label>
-                            <select id="bagian_id" class="form-control" style="width: 100%;" name="bagian_id" required>
-                                <option value="none" selected disabled hidden> Pilih Bagian </option>
+                            <label for="bagian_id">Bagian</label>
+                            <select id="bagian_id" class="select2bs4" style="width: 100%;" name="bagian_id[]"
+                                multiple="multiple" required>
                                 @foreach( $bagian as $data )
                                     <option value="{{ $data->id_bagian }}">{{ $data->nama_bagian }}</option>
                                 @endforeach
@@ -126,4 +138,20 @@ Tambah Pegawai
     <!--/.col (right) -->
 </div>
 
+@endsection
+
+@section('js')
+<script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
+<script>
+    $(function () {
+        //Initialize Select2 Elements
+        $('.select2').select2()
+
+        //Initialize Select2 Elements
+        $('.select2bs4').select2({
+            theme: 'bootstrap4'
+        })
+    });
+
+</script>
 @endsection

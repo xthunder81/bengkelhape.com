@@ -26,7 +26,7 @@ class PegawaiSeeder extends Seeder
             'kecamatan_pegawai' => 'Kedendeng',
             'kabupaten_pegawai' => 'Sidoarjo',
             'provinsi_pegawai' => 'Jawa Timur',
-            'telpon_pegawai' => '+6281122334455',
+            'telpon_pegawai' => '81122334455',
         ]);
     }
 }

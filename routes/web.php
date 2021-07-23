@@ -55,5 +55,12 @@ Route::group([ 'prefix' => 'admin', 'middleware' => 'auth:pegawai'], function ()
     Route::patch('service/update/{id}', 'ServiceController@update')->name('admin.service.update');
     Route::delete('service/destroy/{id}', 'ServiceController@destroy')->name('admin.service.destroy');
 
+    Route::get('transaksi', 'TransaksiController@index')->name('admin.transaksi');
+    Route::get('transaksi/create', 'TransaksiController@create')->name('admin.transaksi.create');
+    Route::post('transaksi/store', 'TransaksiController@store')->name('admin.transaksi.store');
+    Route::get('transaksi/edit/{id}', 'TransaksiController@edit')->name('admin.transaksi.edit');
+    Route::patch('transaksi/update/{id}', 'TransaksiController@update')->name('admin.transaksi.update');
+    Route::delete('transaksi/destroy/{id}', 'TransaksiController@destroy')->name('admin.transaksi.destroy');
+
     Route::post('logout', 'AdminAuthController@logout')->name('admin.logout');
 });

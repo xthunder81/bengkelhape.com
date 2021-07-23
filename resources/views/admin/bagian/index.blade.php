@@ -29,7 +29,7 @@ Bagian
                                 <tr>
                                     <th>No</th>
                                     <th>Nama Bagian</th>
-                                    <th>Kode Bagian Bagian</th>
+                                    <th>Kode Bagian</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>

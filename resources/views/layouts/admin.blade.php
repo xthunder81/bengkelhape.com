@@ -36,6 +36,9 @@
     <link rel="stylesheet" href="{{ asset ('plugins/daterangepicker/daterangepicker.css') }}">
     <!-- summernote -->
     <link rel="stylesheet" href="{{ asset ('plugins/summernote/summernote-bs4.min.css') }}">
+
+    <!-- Include per-page CSS -->
+    @yield('css')
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -350,6 +353,9 @@
         });
     });
     </script>
+
+    <!-- Include per-page JS -->
+    @yield('js')
 
 </body>
 

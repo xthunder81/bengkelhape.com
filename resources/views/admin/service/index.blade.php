@@ -29,7 +29,7 @@ Service
                                 <tr>
                                     <th>No</th>
                                     <th>Nama Service</th>
-                                    <th>Kode Service Service</th>
+                                    <th>Kode Service</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>

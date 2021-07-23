@@ -28,7 +28,7 @@ Edit Pegawai
                                     value="{{ $pegawai->username ?? old('username') }}"
                                     readonly>
                             </div>
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label for="password">Password</label>
                                 <div class="input-group" id="show_hide_password">
                                     <input class="form-control" name="password" id="password" type="password" placeholder="Masukkan Password" aria-describedby="basic-addon2"
@@ -37,7 +37,7 @@ Edit Pegawai
                                         <span class="input-group-text" id="basic-addon2"><a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a></span>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="form-group">
                                 <label for="nama_pegawai">Nama Pegawai</label>
                                 <input class="form-control" id="nama_pegawai" placeholder="Nama Lengkap"
@@ -99,14 +99,17 @@ Edit Pegawai
                         </div>
                         <div class="form-group col-md-6">
                             <label for="telpon_pegawai">Telpon</label>
-                            <input class="form-control" id="telpon_pegawai" placeholder="Telpon" name="telpon_pegawai"
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="telpon_pegawai">+62</span>
+                                <input class="form-control" id="telpon_pegawai" placeholder="Telpon" name="telpon_pegawai"
                                 value="{{ $pegawai->telpon_pegawai ?? old('telpon_pegawai') }}" required>
+                            </div>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="bagian_id">Bagian</label>
-                            <select id="bagian_id" class="form-control" style="width: 100%;" name="bagian_id" required>
-                                <option value="{{$detailp->bagian_id}}" selected disabled hidden> {{$detailp->nama_bagian}} </option>
+                            <select id="bagian_id" class="form-control" style="width: 100%<;" name="bagian_id" required>
                                 @foreach( $bagian as $data )
+                                    <option {{$detailp->bagian_id = $data->id_bagian ?? 'selected' : ''}} value="{{ $data->id_bagian }}">{{ $data->nama_bagian }}</option>
                                     <option value="{{ $data->id_bagian }}">{{ $data->nama_bagian }}</option>
                                 @endforeach
                             </select>

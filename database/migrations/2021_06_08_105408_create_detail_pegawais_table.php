@@ -17,7 +17,8 @@ class CreateDetailPegawaisTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id_detail_pegawai');
 			$table->unsignedInteger('pegawai_id');
-			$table->unsignedInteger('bagian_id');
+            $table->unsignedInteger('bagian_id');
+			// $table->string('bagian_id')->nullable();
             $table->string('kode_pegawai')->nullable();
             $table->timestamps();
 
