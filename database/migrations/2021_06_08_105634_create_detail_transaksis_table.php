@@ -20,6 +20,7 @@ class CreateDetailTransaksisTable extends Migration
             $table->string('berita', 255)->nullable();
             $table->string('item')->nullable();
             $table->integer('harga')->nullable();
+            $table->string('status_transaksi')->nullable();
             $table->timestamps();
 
             $table->index("transaksi_id");

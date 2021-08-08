@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\transaksi;
 use App\detail_transaksi;
 use App\Http\Controllers\Controller;
+use App\pegawai;
+use App\service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TransaksiController extends Controller
 {
@@ -17,6 +20,17 @@ class TransaksiController extends Controller
     public function index()
     {
         //
+        $viewTransaksi = DB::table('detail_transaksi')
+                            ->join('transaksi', 'transaksi.id_transaksi', '=', 'detail_transaksi.transaksi_id')
+                            ->join('service', 'service.id_service', '=', 'transaksi.service.id')
+                            ->join('pegawai', 'pegawai.id_pegawai', '=', 'transaksi.admin_id')
+                            ->select('transaksi.id_transaksi', 'service.nama_service',
+                                'transaksi.no_transaksi', 'transaksi.tanggal_terima', 'transaksi.merek',
+                                'pegawai.nama_pegawai')
+                            ->latest('created_at')
+                            ->first();
+
+        return view('admin.transaksi.index', compact('viewTransaksi'));
     }
 
     /**
@@ -27,6 +41,10 @@ class TransaksiController extends Controller
     public function create()
     {
         //
+        $service = service::get();
+        $pegawai = pegawai::get();
+
+        return view('admin.transaksi.create', compact('service', 'pegawai'));
     }
 
     /**
