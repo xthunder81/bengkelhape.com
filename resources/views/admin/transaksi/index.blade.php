@@ -28,12 +28,12 @@ Transaksi
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Tanggal Transaksi</th>
+                                    {{-- <th>Tanggal Transaksi</th> --}}
                                     <th>No Transaksi</th>
                                     <th>Service</th>
                                     <th>Merek</th>
                                     <th>Nama Customer</th>
-                                    <th>Keluhan</th>
+                                    <th>Admin</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -41,11 +41,12 @@ Transaksi
                                 @foreach($viewTransaksi as $data)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ \Carbon\Carbon::parse($data->tanggal_terima)->format('d-m-Y') }}</td>
+                                        {{-- <td>{{ \Carbon\Carbon::parse($data->tanggal_terima)->format('d-m-Y') }}</td> --}}
                                         <td>{{ $data->no_transaksi }}</td>
                                         <td>{{ $data->nama_service }}</td>
                                         <td>{{ $data->merek }}</td>
                                         <td>{{ $data->nama_customer }}</td>
+                                        <td>{{ $data->adm_nama }}</td>
                                         <td><a href="{{ route('admin.transksi.edit', $data->id_transaksi) }}"
                                                 class="btn btn-xs btn-primary" data-toggle="tooltip"
                                                 data-placement="top" title="Edit Transaksi"><i

@@ -20,17 +20,22 @@ class TransaksiController extends Controller
     public function index()
     {
         //
-        $viewTransaksi = DB::table('detail_transaksi')
-                            ->join('transaksi', 'transaksi.id_transaksi', '=', 'detail_transaksi.transaksi_id')
-                            ->join('service', 'service.id_service', '=', 'transaksi.service.id')
-                            ->join('pegawai', 'pegawai.id_pegawai', '=', 'transaksi.admin_id')
+        $viewTransaksi = DB::table('transaksi')
+                            ->join('detail_transaksi', 'detail_transaksi.transaksi_id', '=', 'transaksi.id_transaksi')
+                            ->join('service', 'service.id_service', '=', 'transaksi.service_id')
+                            ->join('pegawai AS tks', 'tks.id_pegawai', '=', 'transaksi.teknisi_id')
+                            ->join('pegawai AS adm', 'adm.id_pegawai', '=', 'transaksi.admin_id')
                             ->select('transaksi.id_transaksi', 'service.nama_service',
                                 'transaksi.no_transaksi', 'transaksi.tanggal_terima', 'transaksi.merek',
-                                'pegawai.nama_pegawai')
-                            ->latest('created_at')
-                            ->first();
+                                'tks.nama_pegawai as tks_nama', 'adm.nama_pegawai as adm_nama', 'detail_transaksi.status_transaksi')
+                            ->get();
 
         return view('admin.transaksi.index', compact('viewTransaksi'));
+    }
+
+    public function transaksiView (Request $request)
+    {
+
     }
 
     /**

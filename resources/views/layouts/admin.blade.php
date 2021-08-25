@@ -224,7 +224,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route ('admin.transaksi') }}"
+                                class="nav-link {{ Route::current()->getName() == 'admin.transaksi' ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-edit"></i>
                                 <p>
                                     Transaksi
