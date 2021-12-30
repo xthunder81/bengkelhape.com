@@ -17,5 +17,20 @@ class ServiceSeeder extends Seeder
             'nama_service' => 'Handphone',
             'kode_service' => 'HP',
         ]);
+
+        service::create([
+            'nama_service' => 'Komputer',
+            'kode_service' => 'PC',
+        ]);
+
+        service::create([
+            'nama_service' => 'Laptop',
+            'kode_service' => 'LTP',
+        ]);
+
+        service::create([
+            'nama_service' => 'Printer',
+            'kode_service' => 'PRN',
+        ]);
     }
 }
